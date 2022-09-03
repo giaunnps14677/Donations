@@ -1,0 +1,6 @@
+.bg img{
+    border-radius: 10px;
+}
+.bg-color{
+    background-image: radial-gradient(circle, bisque, rgb(233, 233, 106), pink);
+}

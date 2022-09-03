@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8" />
+	<title>Document</title>
+</head>
+<body>
+	<h1>Edit Account</h1>
+	<form th:action="@{/account/saveOrUpdate}" method="post"
+	th:object="${account}">
+	<input type="text" placeholder="Email" th:field="*{email}"/><br>
+	<input type="text" placeholder="Username" th:field="*{username}"/><br>
+	<input type="text" placeholder="Password" th:field="*{password}"/><br>
+    <input type="hidden" th:field="*{role}" th:value="0"/><br>
+	<input type="submit" value="Save"/>
+	</form>
+</body>
+</html>
+	

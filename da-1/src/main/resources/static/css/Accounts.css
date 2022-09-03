@@ -1,0 +1,11 @@
+.title{
+    font-size: 28px;
+}
+.bg{
+    background-image: radial-gradient(circle, bisque, rgb(233, 233, 106), pink);
+}
+#id{
+	border: none;
+	background-color: none;
+}
+.hidetext { -webkit-text-security: circle; }

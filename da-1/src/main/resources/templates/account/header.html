@@ -1,0 +1,90 @@
+
+<div class="container-fluid">
+	<nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+		<a class="navbar-brand" href="/account/listCacDot"><i class="bi bi-house"></i></a>
+		<a> <!-- <span th:text="*{displayUser}"></span></a> --> <!--                           <a class="navbar-brand" href="login">Login</a> -->
+			<button class="navbar-toggler" type="button"
+				data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+				aria-controls="navbarNavDropdown" aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNavDropdown">
+				<ul class="navbar-nav">
+
+					<span sec:authorize="isAuthenticated()">
+
+						<form id="logoutForm" method="POST" th:action="@{/logout}">
+							<input type="hidden" name="${_csrf.parameterName}"
+								value="${_csrf.token}" />
+						</form>
+
+						<h2>
+							<i class="bi bi-person-circle"></i> &nbsp &nbsp Welcome <span
+								sec:authentication="name"></span>
+						</h2>
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="/account/changePassword"><span th:text="#{change_password}"></span></a></li>
+
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="#"
+							onclick="document.forms['logoutForm'].submit()"><span th:text="#{logout}"></span></a></li>
+						<li class="nav-item"><span> <a class="nav-link active"
+								aria-current="page" href="/account/donationHistory"><span th:text="#{donation_history}"></span></a>
+						</span></li> <!-- 										Roles: <span sec:authentication="principal.authorities">[ROLE_USER, -->
+						<!-- 											ROLE_ADMIN]</span> --> <span
+						sec:authorize="hasRole('ROLE_ADMIN')">
+							<li class="nav-item"><a class="nav-link active"
+								aria-current="page" href="/account/displayAccounts"><span th:text="#{account}"></span></a></li>
+
+							<li class="nav-item"><a class="nav-link active"
+								aria-current="page" href="/account/displayDonations"><span th:text="#{donation}"></span></a></li>
+					</span> <!-- 										<div sec:authorize="hasRole('ROLE_USER')">This content -->
+						<!-- 											is only shown to users.</div> -->
+
+					</span>
+
+					<span sec:authorize="!isAuthenticated()">
+						<li class="nav-item"><a class="navbar-brand"
+							href="/account/login"><span th:text="#{login}"></span></a></li>
+
+						<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="/account/dangKy"><span th:text="#{register_account}"></span></a></li>
+					</span>
+
+	<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="?lang=en">English</a></li>
+								<li class="nav-item"><a class="nav-link active"
+							aria-current="page" href="?lang=vi">VI</a></li>
+				</ul>
+				
+	</nav>
+
+</div>
+
+<div class="container-fluid mb-3">
+	<form class="d-flex" method="get" th:action="@{/account/listCacDot}">
+		<div class="dropdown">
+			<button class="btn btn-secondary dropdown-toggle" type="button"
+				id="dropdownMenuButton1" data-bs-toggle="dropdown"
+				aria-expanded="false"><span th:text="#{donation_circumstances}"></span></button>
+			<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+				<li><a class="dropdown-item" href="/account/listCacDot?searchText=em">Vì trẻ em</a></li>
+				<li><a class="dropdown-item" href="/account/listCacDot?searchText=già">Người già neo
+						đơn, khuyết tật</a></li>
+				<li><a class="dropdown-item" href="/account/listCacDot?searchText=nghèo">Ấm tình dân
+						nghèo</a></li>
+				<li><a class="dropdown-item" href="/account/listCacDot?searchText=xanh">Mang xanh</a></li>
+				<li><a class="dropdown-item" href="/account/listCacDot?searchText=nước">Nguồn nước sạch</a></li>
+			</ul>
+		</div>
+		<input class="form-control me-2" type="search" th:placeholder="#{search}"
+			aria-label="Search" name="searchText">
+		<button class="btn btn-outline-success" type="submit"><span th:text="#{search}"></span></button>
+
+	</form>
+</div>
+<div class="banner">
+<img th:src="@{/images/container.png}" alt="container.png" class="col-12">
+</div>
